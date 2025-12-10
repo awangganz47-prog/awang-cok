@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEWA BOT WA - Awang OfficiaL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* Reset dan styling dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0c0c2e 0%, #000000 100%);
+    padding: 20px;
+}
+
+/* Container utama */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 10;
+    position: relative;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 0;
+}
+
+.logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #009dff;
+    margin: 0 auto 25px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 157, 255, 0.4);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-shadow: none;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #009dff, #00b7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Info Panel */
+.panel-info {
+    background: rgba(0, 157, 255, 0.08);
+    border: 2px solid rgba(0, 157, 255, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    text-align: center;
+}
+
+.info-item {
+    padding: 20px;
+}
+
+.info-icon {
+    font-size: 3rem;
+    color: #009dff;
+    margin-bottom: 15px;
+    text-shadow: none;
+}
+
+.info-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+/* Grid Produk Bot */
+..products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.product-card {
+    background: rgba(0, 157, 255, 0.06);
+    border: 2px solid rgba(0, 157, 255, 0.3);
+    border-radius: 20px;
+    padding: 35px;
+    transition: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* HAPUS animasi kilau */
+.product-card::before { display: none; }
+
+.product-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #009dff;
+    text-shadow: none;
+}
+
+.product-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #009dff, #00b7ff);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    box-shadow: none;
+    letter-spacing: 1px;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.pricing-item {
+    background: rgba(0, 157, 255, 0.05);
+    border: 2px solid rgba(0, 157, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: none;
+}
+
+.pricing-duration {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #009dff;
+    margin-bottom: 10px;
+}
+
+.pricing-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.product-features {
+    list-style: none;
+    margin: 25px 0;
+    text-align: left;
+}
+
+.product-features li {
+    padding: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    padding-left: 35px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.product-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #009dff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: linear-gradient(45deg, #009dff, #00b7ff);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: none;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 50px 0;
+    border-top: 2px solid rgba(0, 157, 255, 0.3);
+    margin-top: 60px;
+}
+
+.footer-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* HAPUS semua bintang & partikel */
+.stars, .star, .particles, .particle {
+    display: none !important;
+}
+
+/* HAPUS semua animasi */
+* {
+    animation: none !important;
+    transition: none !important;
+}
+    </style>
+</head>
+<body>
+    <!-- Bintang Berjatuhan -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Partikel Bintang Diam -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Container Utama -->
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://files.catbox.moe/lfdwhm.jpg" alt="Awang OfficiaL" onerror="this.src='https://via.placeholder.com/140x140/000000/FFFFFF?text=DITOZZ'">
+            </div>
+            <h1 class="title">SEWA BOT WA</h1>
+            <p class="subtitle">Layanan SEWA BOT WA premium dengan fitur lengkap dan harga terjangkau</p>
+        </div>
+        
+        <!-- Info Panel -->
+        <div class="panel-info">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="info-text">Bot Premium</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="info-text">Instant Setup</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="info-text">100% Aman</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="info-text">Support 24/7</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grid Produk Bot -->
+        <div class="products-grid">
+            <!-- ELIANA MD GROUP -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="product-badge">RYO YAMADA MD GROUP</div>
+                    <p class="product-description">Bot WhatsApp premium dengan fitur lengkap dan performa tinggi</p>
+                </div>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-item">
+                        <div class="pricing-duration">1 MINGGU</div>
+                        <div class="pricing-price">Rp10.000</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-duration">2 MINGGU</div>
+                        <div class="pricing-price">Rp15.000</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-duration">1 BULAN</div>
+                        <div class="pricing-price">Rp20.000</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-duration">2 BULAN</div>
+                        <div class="pricing-price">Rp25.000</div>
+                    </div>
+                </div>
+                
+                <ul class="product-features">
+                    <li>Auto Reply Message</li>
+                    <li>Broadcast Unlimited</li>
+                    <li>Database Management</li>
+                    <li>Multi Device Support</li>
+                    <li>Anti Delete Message</li>
+                    <li>Sticker & Media Support</li>
+                    <li>24/7 Online</li>
+                </ul>
+                
+                <a href="https://wa.link/kly75x" class="product-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Sewa Sekarang
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">Awang OfficiaL &copy; 2023 - SEWA BOT WA</p>
+            <p class="footer-text">Garansi 100% uptime dan support 24/7</p>
+        </div>
+    </div>
+    
+ </body>
+ </html>

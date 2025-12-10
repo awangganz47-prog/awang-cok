@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awang OfficiaL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a0f 0%, #000 100%);
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOADING SCREEN */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.4s ease;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgba(0, 170, 255, 0.15);
+    border-radius: 50%;
+    border-top-color: #00aaff;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: #00aaff;
+    letter-spacing: 2px;
+}
+
+/* SPINNER ANIM ONLY (ringan) */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* CONTENT */
+#content {
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* PROFILE PIC (hapus animasi float) */
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid #00aaff;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    box-shadow: 0 0 18px rgba(0, 170, 255, 0.4);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.7s ease;
+}
+
+.profile-pic.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TEXT */
+.welcome-container {
+    margin-bottom: 30px;
+    min-height: 150px;
+}
+
+.welcome-line {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #00aaff;
+    text-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
+    letter-spacing: 4px;
+    line-height: 1.4;
+}
+
+.ditozz-line {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(0, 170, 255, 0.8);
+    letter-spacing: 4px;
+    margin-top: 15px;
+}
+
+/* Hapus animasi karakter per huruf */
+.char {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MENU */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 30px;
+}
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 18px 30px;
+    background: rgba(0, 170, 255, 0.08);
+    border: 2px solid #00aaff;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s ease;
+    backdrop-filter: blur(6px);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-btn:hover {
+    background: rgba(0, 170, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(0, 170, 255, 0.4);
+}
+
+.menu-btn i {
+    font-size: 1.5rem;
+}
+
+/* MATIKAN BINTANG & PARTIKEL (hapus lag total) */
+.stars,
+.star,
+.particles,
+.particle {
+    display: none !important;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(0, 170, 255, 0.5);
+    opacity: 1;
+    z-index: 10;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .welcome-line { font-size: 2.2rem; }
+    .ditozz-line { font-size: 2.7rem; }
+    .profile-pic { width: 150px; height: 150px; }
+    .menu-btn { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+    .welcome-line { font-size: 1.8rem; }
+    .ditozz-line { font-size: 2.2rem; }
+    .profile-pic { width: 130px; height: 130px; }
+    .menu-btn { font-size: 1.1rem; }
+}
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">MEMUAT GALAXY...</div>
+    </div>
+    
+    <!-- Konten Utama -->
+    <div id="content">
+        <div class="welcome-container">
+            <div class="welcome-line" id="welcome-line"></div>
+            <div class="ditozz-line" id="ditozz-line"></div>
+        </div>
+        
+        <div class="profile-pic" id="profile-pic">
+            <img src="https://files.catbox.moe/lfdwhm.jpg" alt="Profile Picture DITozz" onerror="this.src='https://via.placeholder.com/180x180/000000/FFFFFF?text=DITOZZ'">
+        </div>
+        
+        <div class="menu">
+            <a href="produk.html" class="menu-btn" target="_blank" id="produk-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>PRODUK</span>
+            </a>
+            <a href="https://report-tawny-iota.vercel.app/" id="report-btn">
+                <i class="fas fa-flag"></i>
+                <span>REPORT</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Bintang Berjatuhan -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Partikel Bintang Diam -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Footer -->
+    <div class="footer" id="footer">
+        <p>Awang OfficiaL &copy; 2023 - Semua Hak Dilindungi</p>
+    </div>
+    
+    <script>
+        // Fungsi untuk membuat bintang jatuh ke samping
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 80;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Ukuran acak untuk bintang
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posisi acak untuk bintang (mulai dari atas)
+                star.style.top = `-20px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                
+                // Animasi dengan durasi acak
+                const duration = Math.random() * 4 + 2;
+                const delay = Math.random() * 5;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                // Pilih animasi jatuh ke kanan atau kiri secara acak
+                const direction = Math.random() > 0.5 ? 'fallSideRight' : 'fallSideLeft';
+                star.style.animationName = direction;
+                
+                // Warna putih untuk semua bintang
+                star.style.backgroundColor = '#ffffff';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Fungsi untuk membuat bintang diam yang berkedip
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 150;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posisi acak untuk partikel
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Animasi dengan durasi acak
+                const duration = Math.random() * 5 + 3;
+                const delay = Math.random() * 5;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Ukuran acak untuk partikel
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Warna putih untuk semua partikel
+                particle.style.backgroundColor = '#ffffff';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Fungsi untuk animasi mengetik
+        function typeWriter(element, text, speed, callback) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    if (text.charAt(i) === ' ') {
+                        const spaceSpan = document.createElement('span');
+                        spaceSpan.classList.add('space');
+                        element.appendChild(spaceSpan);
+                    } else {
+                        const charSpan = document.createElement('span');
+                        charSpan.classList.add('char');
+                        charSpan.textContent = text.charAt(i);
+                        charSpan.style.transitionDelay = `${i * 0.05}s`;
+                        element.appendChild(charSpan);
+                        
+                        // Animasi untuk setiap karakter
+                        setTimeout(() => {
+                            charSpan.style.opacity = '1';
+                            charSpan.style.transform = 'translateY(0)';
+                        }, 10);
+                    }
+                    
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    setTimeout(callback, 500);
+                }
+            }
+            
+            type();
+        }
+        
+        // Fungsi untuk menampilkan konten setelah loading
+        window.addEventListener('load', function() {
+            // Membuat bintang jatuh ke samping dan bintang diam
+            createStars();
+            createParticles();
+            
+            // Menunggu 1 detik kemudian menyembunyikan loading dan menampilkan konten
+            setTimeout(function() {
+                const loading = document.getElementById('loading');
+                const content = document.getElementById('content');
+                const welcomeLine = document.getElementById('welcome-line');
+                const ditozzLine = document.getElementById('ditozz-line');
+                const profilePic = document.getElementById('profile-pic');
+                const produkBtn = document.getElementById('produk-btn');
+                const reportBtn = document.getElementById('report-btn');
+                const footer = document.getElementById('footer');
+                
+                loading.style.opacity = '0';
+                setTimeout(function() {
+                    loading.style.display = 'none';
+                    content.style.opacity = '1';
+                    
+                    // Menampilkan teks pertama dengan animasi mengetik
+                    typeWriter(welcomeLine, 'Welcome To', 80, function() {
+                        // Setelah animasi selesai, tampilkan teks kedua
+                        setTimeout(function() {
+                            typeWriter(ditozzLine, 'AwangXoffc', 80, function() {
+                                // Setelah animasi selesai, tampilkan profile picture dan menu
+                                setTimeout(function() {
+                                    profilePic.classList.add('show');
+                                    produkBtn.classList.add('show');
+                                    reportBtn.classList.add('show');
+                                    footer.classList.add('show');
+                                }, 300);
+                            });
+                        }, 300);
+                    });
+                }, 500);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

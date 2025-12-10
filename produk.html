@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Awang OfficiaL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d0d0d 0%, #000000 100%);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 10;
+    position: relative;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #0A84FF;
+    margin: 0 auto 20px;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ffffff, #0A84FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(200, 200, 200, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(10, 132, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(10, 132, 255, 0.6);
+}
+
+.product-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #0A84FF;
+}
+
+.product-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.product-description {
+    font-size: 0.95rem;
+    color: rgba(230, 230, 230, 0.8);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.product-features {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.product-features li {
+    padding: 8px 0;
+    color: rgba(210, 210, 210, 0.9);
+    position: relative;
+    padding-left: 25px;
+}
+
+.product-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #0A84FF;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0A84FF;
+    margin-bottom: 20px;
+}
+
+.product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    background: linear-gradient(45deg, #0A84FF, #1BA0FF);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+    width: 100%;
+}
+
+.product-btn:hover {
+    transform: translateY(-3px);
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid rgba(10, 132, 255, 0.2);
+    margin-top: 40px;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: rgba(180, 180, 180, 0.6);
+}
+
+@media (max-width: 768px) {
+    .title { font-size: 2.2rem; }
+    .subtitle { font-size: 1rem; }
+    .products-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 1.8rem; }
+    .logo { width: 100px; height: 100px; }
+    .product-title { font-size: 1.4rem; }
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://files.catbox.moe/lfdwhm.jpg" alt="Awang OfficiaL"
+                onerror="this.src='https://via.placeholder.com/120x120/000000/FFFFFF?text=DITOZZ'">
+            </div>
+
+            <h1 class="title">PRODUK KAMI</h1>
+            <p class="subtitle">Temukan berbagai layanan terbaik kami dengan kualitas premium dan harga terjangkau</p>
+        </div>
+
+        <div class="products-grid">
+
+            <!-- CARD 1 -->
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-server"></i></div>
+                <h3 class="product-title">Panel Pterodactyl</h3>
+                <p class="product-description">Panel kontrol server yang powerful dan mudah digunakan.</p>
+                <ul class="product-features">
+                    <li>Server aktif 30 hari</li>
+                    <li>Monitoring real-time</li>
+                    <li>Backup otomatis</li>
+                    <li>Support multi-device</li>
+                </ul>
+                <div class="product-price">Mulai Rp 1.000/bulan</div>
+                <a href="panel.html" class="product-btn" target="_blank">Pilih RAM</a>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-globe-americas"></i></div>
+                <h3 class="product-title">NOKOS WA ALL NEGARA</h3>
+                <p class="product-description">Nomor kosong dari berbagai negara untuk verifikasi akun.</p>
+                <ul class="product-features">
+                    <li>16+ negara tersedia</li>
+                    <li>Instant delivery</li>
+                    <li>Support semua platform</li>
+                </ul>
+                <div class="product-price">Mulai Rp 6.000</div>
+                <a href="nokos.html" class="product-btn" target="_blank">Pilih Nokos</a>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3 class="product-title">MURID ALL PILIH</h3>
+                <p class="product-description">Layanan edukasi dengan akses berbagai platform belajar.</p>
+                <ul class="product-features">
+                    <li>Akses semua platform</li>
+                    <li>Update berkala</li>
+                    <li>Support 24/7</li>
+                    <li>Materi lengkap</li>
+                </ul>
+                <div class="product-price">Mulai Rp 8.000 permanen</div>
+                <a href="murid.html" class="product-btn" target="_blank">Pilih Murid</a>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-code"></i></div>
+                <h3 class="product-title">JASA RENAME SCRIPT</h3>
+                <p class="product-description">Rename & custom script sesuai kebutuhan.</p>
+                <ul class="product-features">
+                    <li>Ubah Nama Owner</li>
+                    <li>Ubah Nomor Bot</li>
+                    <li>Ubah Gambar Bot</li>
+                    <li>Reques Name Script</li>
+                </ul>
+                <div class="product-price">Mulai Rp 9.000</div>
+                <a href="https://wa.link/9oiwhp" class="product-btn" target="_blank">Pesan Sekarang</a>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="product-card">
+                <div class="product-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3 class="product-title">SEWA BOT WHATSAPP</h3>
+                <p class="product-description">Bot WA untuk otomasi bisnis & layanan pelanggan.</p>
+                <ul class="product-features">
+                    <li>Auto reply</li>
+                    <li>Broadcast message</li>
+                    <li>Database management</li>
+                    <li>24/7 online</li>
+                </ul>
+                <div class="product-price">Mulai Rp 15.000/bulan</div>
+                <a href="sewa.html" class="product-btn" target="_blank">Sewa Bot</a>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">Awang OfficiaL © 2023 - All Products</p>
+            <p class="footer-text">Garansi 100% aman dan terpercaya</p>
+        </div>
+    </div>
+
+</body>
+</html>

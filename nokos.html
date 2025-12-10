@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOKOS ALL NEGARA - Awang OfficiaL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.4/css/flag-icons.min.css">
+    <style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #0d0d0d 0%, #000 100%);
+    color: #e0e0e0;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeIn 0.7s ease;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #00aaff; 
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.4);
+}
+
+.logo img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 15px 0 10px;
+    background: linear-gradient(45deg, #00aaff, #0088ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #bfbfbf;
+    font-size: 1.2rem;
+}
+
+/* PANEL INFO */
+.panel-info {
+    background: rgba(0, 170, 255, 0.06);
+    border: 1px solid rgba(0, 170, 255, 0.25);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    text-align: center;
+    gap: 20px;
+}
+
+.info-icon {
+    font-size: 2rem;
+    color: #00aaff;
+    margin-bottom: 8px;
+}
+
+/* CARD PRODUK (WARNA BARU, DESAIN TIDAK DIUBAH) */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(160, 160, 160, 0.15);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+
+    /* Tambahan untuk meratakan flag & badge ke tengah */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 170, 255, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 170, 255, 0.25);
+}
+
+.ram-badge {
+    background: linear-gradient(45deg, #00aaff, #0088ff);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline-block;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #00aaff;
+    margin-bottom: 25px;
+}
+
+.product-features {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.product-features li {
+    padding: 8px 0;
+    color: #d0d0d0;
+    position: relative;
+    padding-left: 25px;
+    font-size: 1rem;
+}
+
+.product-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #00aaff;
+    font-weight: bold;
+}
+
+.country-flag {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.5)); /* biru elektrik glow */
+}
+
+.country-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #0088dd, #00aaff); /* biru neon → biru elektrik */
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.5); /* glow biru */
+    box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3); /* shadow biru */
+}
+
+.product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    background: linear-gradient(45deg, #00aaff, #0088ff);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+    width: 100%;
+}
+
+.product-btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+.country-badge {
+                font-size: 1rem;
+            }
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #888;
+    font-size: 0.9rem;
+    animation: fadeIn 0.8s ease;
+}
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .title { font-size: 2.2rem; }
+    .subtitle { font-size: 1rem; }
+}
+    </style>
+</head>
+<body>
+    <!-- Bintang Berjatuhan -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Partikel Bintang Diam -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Container Utama -->
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://files.catbox.moe/lfdwhm.jpg" alt="Awang OfficiaL" onerror="this.src='https://via.placeholder.com/120x120/000000/FFFFFF?text=DITOZZ'">
+            </div>
+            <h1 class="title">NOKOS ALL NEGARA</h1>
+            <p class="subtitle">Layanan nomor kosong WhatsApp dari berbagai negara dengan kualitas terbaik</p>
+        </div>
+        
+        <!-- Info Panel -->
+        <div class="panel-info">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="info-text">16+ Negara</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="info-text">Instant Delivery</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="info-text">100% Aman</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="info-text">Support 24/7</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grid Produk NOKOS -->
+        <div class="products-grid">
+            <!-- INDONESIA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-id"></span>
+                </div>
+                <div class="country-badge">NOKOS INDONESIA</div>
+                <div class="product-price">Rp6.000</div>
+                <ul class="product-features">
+                    <li>Nomor +62 Indonesia</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                </ul>
+                <a href="https://wa.link/l9hz3u" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- RUSSIA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-ru"></span>
+                </div>
+                <div class="country-badge">NOKOS RUSSIA</div>
+                <div class="product-price">Rp25.000</div>
+                <ul class="product-features">
+                    <li>Nomor +7 Russia</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/54rtpk" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- USA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-us"></span>
+                </div>
+                <div class="country-badge">NOKOS USA</div>
+                <div class="product-price">Rp21.000</div>
+                <ul class="product-features">
+                    <li>Nomor +1 USA</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/5o8m6q" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- SOUTH AFRICA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-za"></span>
+                </div>
+                <div class="country-badge">NOKOS SOUTH AFRICA</div>
+                <div class="product-price">Rp15.000</div>
+                <ul class="product-features">
+                    <li>Nomor +27 Afrika Selatan</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/ha61sj" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- CANADA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-ca"></span>
+                </div>
+                <div class="country-badge">NOKOS CANADA</div>
+                <div class="product-price">Rp12.000</div>
+                <ul class="product-features">
+                    <li>Nomor +1 Canada</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/ocml02" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- PHILIPPINES -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-ph"></span>
+                </div>
+                <div class="country-badge">NOKOS PHILIPPINES</div>
+                <div class="product-price">Rp15.000</div>
+                <ul class="product-features">
+                    <li>Nomor +63 Philippines</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/wsepcw" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- BRAZIL -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-br"></span>
+                </div>
+                <div class="country-badge">NOKOS BRAZIL</div>
+                <div class="product-price">Rp30.000</div>
+                <ul class="product-features">
+                    <li>Nomor +55 Brazil</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/zt8ljq" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- GERMANY -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-de"></span>
+                </div>
+                <div class="country-badge">NOKOS GERMANY</div>
+                <div class="product-price">Rp80.000</div>
+                <ul class="product-features">
+                    <li>Nomor +49 Germany</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/8n0kal" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- PALESTINE -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-ps"></span>
+                </div>
+                <div class="country-badge">NOKOS PALESTINA</div>
+                <div class="product-price">Rp11.000</div>
+                <ul class="product-features">
+                    <li>Nomor +970 Palestine</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/hx0hm1" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- ISRAEL -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-il"></span>
+                </div>
+                <div class="country-badge">NOKOS ISRAEL</div>
+                <div class="product-price">Rp30.000</div>
+                <ul class="product-features">
+                    <li>Nomor +972 Israel</li>
+                                        <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/yzbnv1" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- MALAYSIA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-my"></span>
+                </div>
+                <div class="country-badge">NOKOS MALAYSIA</div>
+                <div class="product-price">Rp7.000</div>
+                <ul class="product-features">
+                    <li>Nomor +60 Malaysia</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/6uwgsp" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- MONACO -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-mc"></span>
+                </div>
+                <div class="country-badge">NOKOS MONACO</div>
+                <div class="product-price">Rp15.000</div>
+                <ul class="product-features">
+                    <li>Nomor +377 Monaco</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/9mhkfc" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- SAUDI ARABIA -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-sa"></span>
+                </div>
+                <div class="country-badge">NOKOS SAUDI ARAB</div>
+                <div class="product-price">Rp50.000</div>
+                <ul class="product-features">
+                    <li>Nomor +966 Saudi Arabia</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/zxd5uh" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- THAILAND -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-th"></span>
+                </div>
+                <div class="country-badge">NOKOS THAILAN</div>
+                <div class="product-price">Rp22.000</div>
+                <ul class="product-features">
+                    <li>Nomor +66 Thailand</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/lgm1va" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- VIETNAM -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-vn"></span>
+                </div>
+                <div class="country-badge">NOKOS VIETNAM</div>
+                <div class="product-price">Rp15.000</div>
+                <ul class="product-features">
+                    <li>Nomor +84 Vietnam</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/jepu8q" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+            
+            <!-- LAOS -->
+            <div class="product-card">
+                <div class="country-flag">
+                    <span class="fi fi-la"></span>
+                </div>
+                <div class="country-badge">NOKOS LAOS</div>
+                <div class="product-price">Rp15.000</div>
+                <ul class="product-features">
+                    <li>Nomor +856 Laos</li>
+                    <li>Instant Delivery</li>
+                    <li>Support OTP WhatsApp</li>
+                    <li>Garansi 24 jam</li>
+                </ul>
+                <a href="https://wa.link/l0ec0g" class="product-btn" target="_blank">
+                    Pesan Sekarang
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">Awang OfficiaL &copy; 2023 - NOKOS ALL NEGARA</p>
+            <p class="footer-text">Garansi 100% aman dan support 24/7</p>
+        </div>
+    </div>
+
+</body>
+</html>

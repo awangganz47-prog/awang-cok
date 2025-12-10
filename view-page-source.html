@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Center - Awang OfficiaL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan styling dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0c0c2e 0%, #000000 100%);
+            padding: 20px;
+        }
+        
+        /* Container utama */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+        
+        /* Header */
+        .header {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+        
+        /* Menu Report */
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.8s ease;
+        }
+        
+        .menu-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .menu-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .menu-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .menu-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .menu-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .menu-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 10;
+            animation: fadeIn 1s ease 0.8s both;
+        }
+        
+        /* Styling untuk bintang berjatuhan */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            from {
+                transform: translateY(-100px) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Efek partikel bintang diam */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .menu {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-item {
+                padding: 25px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .menu-icon {
+                font-size: 2.5rem;
+            }
+            
+            .menu-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bintang Berjatuhan -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Partikel Bintang Diam -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Container Utama -->
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://files.catbox.moe/lfdwhm.jpg" alt="Awang OfficiaL" onerror="this.src='https://via.placeholder.com/120x120/000000/FFFFFF?text=DITOZZ'">
+            </div>
+            <h1 class="title">REPORT CENTER</h1>
+            <p class="subtitle">Laporkan masalah yang Anda temukan</p>
+        </div>
+        
+        <div class="menu">
+            <div class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="menu-title">LAPOR ERROR</h3>
+                <p class="menu-desc">Laporkan error atau masalah teknis yang Anda alami saat menggunakan layanan kami</p>
+                <a href="https://wa.link/01nj98" class="menu-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Laporkan Error
+                </a>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <h3 class="menu-title">LAPOR BUG</h3>
+                <p class="menu-desc">Temukan bug? Laporkan di sini untuk membantu kami meningkatkan kualitas sistem</p>
+                <a href="https://wa.link/hqciay" class="menu-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Laporkan Bug
+                </a>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3 class="menu-title">BANTUAN</h3>
+                <p class="menu-desc">Butuh bantuan atau ada pertanyaan? Hubungi tim support kami untuk solusi terbaik</p>
+                <a href="https://wa.link/092k96" class="menu-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Minta Bantuan
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Awang OfficiaL &copy; 2023 - Report Center</p>
+            <p>Semua laporan akan ditanggapi dalam 1x24 jam</p>
+        </div>
+    </div>
+    
+    <script>
+        // Fungsi untuk membuat bintang berjatuhan
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 80;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Ukuran acak untuk bintang
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posisi acak untuk bintang
+                star.style.left = `${Math.random() * 100}vw`;
+                
+                // Animasi dengan durasi acak
+                const duration = Math.random() * 4 + 2;
+                const delay = Math.random() * 5;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                // Warna putih untuk semua bintang
+                star.style.backgroundColor = '#ffffff';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Fungsi untuk membuat bintang diam yang berkedip
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 120;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posisi acak untuk partikel
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Animasi dengan durasi acak
+                const duration = Math.random() * 5 + 3;
+                const delay = Math.random() * 5;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Ukuran acak untuk partikel
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Warna putih untuk semua partikel
+                particle.style.backgroundColor = '#ffffff';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Inisialisasi saat halaman dimuat
+        window.addEventListener('load', function() {
+            createStars();
+            createParticles();
+        });
+    </script>
+</body>
+</html>
